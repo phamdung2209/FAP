@@ -1,0 +1,94 @@
+{
+    "courses": [],
+    "lectures": [
+        {
+            "address": "1",
+            "gender": "FEMALE",
+            "month": "1",
+            "year": "1",
+            "phone": "1",
+            "name": "1",
+            "id": "1",
+            "department": "1",
+            "day": "1",
+            "email": "1"
+        },
+        {
+            "address": "1",
+            "gender": "MALE",
+            "month": "1",
+            "year": "1",
+            "phone": "1",
+            "name": "2",
+            "id": "2",
+            "department": "1",
+            "day": "1",
+            "email": "1"
+        },
+        {
+            "address": "4",
+            "gender": "OTHER",
+            "month": "4",
+            "year": "4",
+            "phone": "4",
+            "name": "4",
+            "id": "4",
+            "department": "4",
+            "day": "4",
+            "email": "4"
+        },
+        {
+            "address": "3",
+            "gender": "OTHER",
+            "month": "3",
+            "year": "3",
+            "phone": "3",
+            "name": "3",
+            "id": "3",
+            "department": "3",
+            "day": "3",
+            "email": "3"
+        }
+    ],
+    "students": [
+        {
+            "address": "Ha Noi",
+            "gender": "MALE",
+            "month": "9",
+            "major": "IT",
+            "year": "2003",
+            "phone": "0787099745",
+            "name": "Pham Van Dung",
+            "id": "BH00268",
+            "day": "22",
+            "years": "2021",
+            "email": "p@g.c"
+        },
+        {
+            "address": "HCM",
+            "gender": "MALE",
+            "month": "1",
+            "major": "BA",
+            "year": "1",
+            "phone": "0999182",
+            "name": "A B C",
+            "id": "BH00023",
+            "day": "1",
+            "years": "2022",
+            "email": "d@f.e.v"
+        },
+        {
+            "address": "Ha Noi",
+            "gender": "female",
+            "month": "0",
+            "major": "unknown",
+            "year": "0",
+            "phone": "0123456789",
+            "name": "C D E",
+            "id": "BH001",
+            "day": "0",
+            "years": "2023",
+            "email": "cde@f.e.v"
+        }
+    ]
+}
