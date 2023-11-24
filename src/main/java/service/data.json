@@ -1,53 +1,56 @@
 {
-    "courses": [],
-    "lectures": [
+    "classes": [
         {
-            "address": "1",
-            "gender": "FEMALE",
-            "month": "1",
-            "year": "1",
-            "phone": "1",
-            "name": "1",
             "id": "1",
-            "department": "1",
-            "day": "1",
-            "email": "1"
+            "name": "1",
+            "lecturerId": "1",
+            "studentId": "BH001"
         },
         {
-            "address": "1",
+            "id": "2",
+            "name": "2",
+            "lecturerId": "1",
+            "studentId": "BH00268"
+        },
+        {
+            "id": "1",
+            "name": "1",
+            "lecturerId": "1",
+            "studentId": "BH001"
+        },
+        {
+            "id": "2",
+            "name": "2",
+            "lecturerId": "1",
+            "studentId": "BH00268"
+        }
+    ],
+    "courses": [
+        {
+            "cost": "2",
+            "name": "2",
+            "description": "2",
+            "id": "2"
+        },
+        {
+            "cost": "15000000",
+            "name": "JAVA",
+            "description": "Java programming",
+            "id": "1"
+        }
+    ],
+    "lectures": [
+        {
+            "address": "",
             "gender": "MALE",
             "month": "1",
             "year": "1",
-            "phone": "1",
-            "name": "2",
-            "id": "2",
-            "department": "1",
+            "phone": "09890999",
+            "name": "Dinh Van Dong",
+            "id": "1",
+            "department": "IT",
             "day": "1",
-            "email": "1"
-        },
-        {
-            "address": "4",
-            "gender": "OTHER",
-            "month": "4",
-            "year": "4",
-            "phone": "4",
-            "name": "4",
-            "id": "4",
-            "department": "4",
-            "day": "4",
-            "email": "4"
-        },
-        {
-            "address": "3",
-            "gender": "OTHER",
-            "month": "3",
-            "year": "3",
-            "phone": "3",
-            "name": "3",
-            "id": "3",
-            "department": "3",
-            "day": "3",
-            "email": "3"
+            "email": "dvd@f.e.v"
         }
     ],
     "students": [
@@ -89,6 +92,15 @@
             "day": "0",
             "years": "2023",
             "email": "cde@f.e.v"
+        }
+    ],
+    "grades": [
+        {
+            "studentId": "BH001",
+            "lecturerId": "1",
+            "grade": "1",
+            "id": "101",
+            "courseId": "1"
         }
     ]
 }

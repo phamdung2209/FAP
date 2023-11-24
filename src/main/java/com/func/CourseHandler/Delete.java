@@ -1,4 +1,4 @@
-package com.func.LectureHandler;
+package com.func.CourseHandler;
 
 import java.util.Scanner;
 import java.util.Timer;
@@ -9,27 +9,27 @@ import com.persons.Administrator;
 public class Delete {
     public Scanner scanner = new Scanner(System.in);
 
-    public void deleteLecture(Administrator admin) {
-        System.out.print("Enter lecture's ID: ");
-        String lectureId = scanner.next();
-        if (admin.checkLecture(lectureId) == false) {
-            System.out.println("Lecture does not exist.");
+    public void deleteCourse(Administrator admin) {
+        System.out.print("Enter course's ID: ");
+        String courseID = scanner.next();
+        if (admin.checkCourse(courseID) == false) {
+            System.out.println("Course does not exist.");
         } else {
-            System.out.print("Are you sure you want to delete this lecture? (y/n) ");
+            System.out.print("Are you sure you want to delete this course? (y/n) ");
             String confirm = scanner.next();
             switch (confirm) {
                 case "Y":
                 case "y":
-                    System.out.println("Deleting lecture...");
-                    if (admin.deleteLecture(lectureId)) {
+                    System.out.println("Deleting course...");
+                    if (admin.deleteCourse(courseID)) {
                         new Timer().schedule(new TimerTask() {
                             public void run() {
-                                admin.deleteLecture(lectureId);
-                                System.out.println("Lecture deleted successfully.");
+                                admin.deleteCourse(courseID);
+                                System.out.println("Course deleted successfully.");
                             }
                         }, 3000);
                     } else {
-                        System.out.println("Failed to delete lecture.");
+                        System.out.println("Failed to delete course.");
                     }
                     break;
                 case "N":

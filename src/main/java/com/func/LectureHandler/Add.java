@@ -15,7 +15,6 @@ import com.persons.Administrator;
 import com.persons.Lecturer;
 
 public class Add {
-    public static final String filePath = "C:\\Users\\ACER\\Documents\\Course\\Advance Programming\\Assignment 2\\Project\\FAP\\src\\main\\java\\service\\data.json";
     public Scanner scanner = new Scanner(System.in);
 
     public void addLecture(Administrator admin) {
@@ -65,51 +64,11 @@ public class Add {
         lecturer.setEmail(lemail);
         lecturer.setDepartment(ldepartment);
 
-        // if (admin.checkLecture(lid)) {
-        // System.out.println("Lecture already exists.");
-        // } else if (admin.addLecturer(lecturer)) {
-        // System.out.println("Lecturer added successfully.");
-        // } else {
-        // System.out.println("Failed to add lecturer.");
-        // }
-
         if (admin.checkLecture(lid)) {
-            System.out.println("Lecture already exists.");
+            System.out.println("Lecture already exists!");
         } else {
-            try {
-                ObjectMapper objectMapper = new ObjectMapper();
-                File file = new File(filePath);
-
-                TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
-                };
-                HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
-
-                List<Map<String, String>> lectures = (List<Map<String, String>>) data.get("lectures");
-                if (lectures == null) {
-                    lectures = new ArrayList<>();
-                }
-
-                Map<String, String> newLecture = new HashMap<>();
-                newLecture.put("id", lecturer.getId());
-                newLecture.put("name", lecturer.getFullName());
-                newLecture.put("address", lecturer.getAddress());
-                newLecture.put("gender", String.valueOf(lecturer.getGender()));
-                newLecture.put("day", String.valueOf(lecturer.getDateOfBirth().getDay()));
-                newLecture.put("month", String.valueOf(lecturer.getDateOfBirth().getMonth()));
-                newLecture.put("year", String.valueOf(lecturer.getDateOfBirth().getYear()));
-                newLecture.put("phone", lecturer.getPhoneNumber());
-                newLecture.put("email", lecturer.getEmail());
-                newLecture.put("department", lecturer.getDepartment());
-
-                lectures.add(newLecture);
-                data.put("lectures", lectures);
-
-                objectMapper.writeValue(file, data);
-                System.out.println("Lecture added successfully.");
-            } catch (IOException e) {
-                System.err.println("Error reading/writing to file: " + e.getMessage());
-                e.printStackTrace();
-            }
+            Administrator administrator = new Administrator();
+            administrator.addLecturer(lecturer);
         }
     }
 }

@@ -51,17 +51,17 @@ public class Update {
         System.out.print("Email: ");
         String uemail = scanner.nextLine();
 
-        Student student1 = new Student();
-        student1.setFullName(ufullName);
-        student1.setGender(ugenderString);
-        student1.setDateOfBirth(udateOfBirth);
-        student1.setYear(uyear);
-        student1.setMajor(umajor);
-        student1.setAddress(uaddress);
-        student1.setPhoneNumber(uphoneNumber);
-        student1.setEmail(uemail);
+        Student stu = new Student();
+        stu.setFullName(ufullName);
+        stu.setGender(ugenderString);
+        stu.setDateOfBirth(udateOfBirth);
+        stu.setYear(uyear);
+        stu.setMajor(umajor);
+        stu.setAddress(uaddress);
+        stu.setPhoneNumber(uphoneNumber);
+        stu.setEmail(uemail);
         
         Administrator administrator = new Administrator();
-        administrator.updateStudent(studentIdUpdate, student1);
+        administrator.updateStudent(studentIdUpdate, stu);
     }
 }
