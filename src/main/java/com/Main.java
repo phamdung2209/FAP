@@ -5,14 +5,10 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.Date.DateOfBirth;
-import com.course.Course;
 import com.func.BackToMain;
-import com.func.Grade;
 import com.func.CourseHandler.HandleCourse;
 import com.func.GradeHandler.HandleGrade;
 import com.func.LectureHandler.HandleLecture;
-import com.func.StudentHandler.Add;
 import com.func.StudentHandler.HandleStudent;
 import com.persons.Administrator;
 import com.persons.Lecturer;
@@ -111,6 +107,17 @@ public class Main {
                                 handleGrade.processGrade(admin, gradeOption);
                             }
                         }
+                        break;
+                    case 5:
+                        System.out.println("------MANAGE CLASSROOM-----");
+                        System.out.println("1. Add classroom");
+                        System.out.println("2. Add student to classroom");
+                        System.out.println("3. Set lecturer to classroom");
+                        System.out.println("4. Delete classroom");
+                        System.out.println("5. Get classroom information");
+                        System.out.println("0. Back");
+
+                        
                         break;
                     case 0:
                         System.out.println("System is stopping...");

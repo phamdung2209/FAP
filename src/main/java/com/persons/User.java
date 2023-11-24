@@ -1,7 +1,5 @@
 package com.persons;
 
-import java.sql.Date;
-
 import com.Date.DateOfBirth;
 
 enum genderType {

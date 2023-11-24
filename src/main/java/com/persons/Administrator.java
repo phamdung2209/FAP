@@ -25,16 +25,10 @@ public class Administrator extends User {
     private List<Grade> gradeList;
 
     public Administrator() {
-        studentList = new ArrayList<>();
-        lecturerList = new ArrayList<>();
-        courseList = new ArrayList<>();
-        gradeList = new ArrayList<>();
-    }
-
-    public Administrator(String id, String fullName, DateOfBirth dateOfBirth, genderType gender, String address,
-            String phoneNumber, String email, List<Student> studentList) {
-        super(id, fullName, dateOfBirth, gender, address, phoneNumber, email);
-        this.studentList = studentList;
+        // studentList = new ArrayList<>();
+        // lecturerList = new ArrayList<>();
+        // courseList = new ArrayList<>();
+        // gradeList = new ArrayList<>();
     }
 
     // ==================== Student ====================
@@ -641,7 +635,8 @@ public class Administrator extends User {
                 Course course = getCourseById(courseId);
 
                 System.out.format("%-10s %-15s %-15s %-20s %-10s\n",
-                        grade.get("id"), student.getFullName(), lecturer.getFullName(), course.getCourseName(), grade.get("grade") + "\n");
+                        grade.get("id"), student.getFullName(), lecturer.getFullName(), course.getCourseName(),
+                        grade.get("grade") + "\n");
             }
 
         } catch (IOException e) {

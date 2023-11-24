@@ -12,17 +12,14 @@ import com.func.View;
 
 public class Lecturer extends User implements View {
     private String department;
-    User user;
 
     public Lecturer() {
     }
 
     public Lecturer(String id, String fullName, DateOfBirth dateOfBirth, genderType gender, String address,
-            String phoneNumber,
-            String email, String department, User user) {
+            String phoneNumber, String email, String department) {
         super(id, fullName, dateOfBirth, gender, address, phoneNumber, email);
         this.department = department;
-        this.user = user;
     }
 
     public String getDepartment() {
@@ -71,11 +68,6 @@ public class Lecturer extends User implements View {
         Grade grade = new Grade(student, lecturer, course, 80);
         grades.add(grade);
         return grade.getGradeAsm();
-    }
-
-    @Override
-    public String toString() {
-        return "Lecturer [department=" + department + ", user=" + user + "]";
     }
 
     // Attendaces for students

@@ -6,23 +6,22 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.Date.DateOfBirth;
-import com.course.Course;
-import com.func.Grade;
 import com.func.View;
 
 public class Student extends User implements View {
     private String major;
     private int year;
-    User user;
-    List<Course> courses;
 
     public Student(String id, String fullName, DateOfBirth dateOfBirth, genderType gender, String address,
-            String phoneNumber, String email, String major, int year, User user, List<Course> courses) {
+            String phoneNumber, String email, String major, int year) {
         super(id, fullName, dateOfBirth, gender, address, phoneNumber, email);
         this.major = major;
         this.year = year;
-        this.user = user;
-        this.courses = courses;
+    }
+
+    public Student(String major, int year) {
+        this.major = major;
+        this.year = year;
     }
 
     public Student() {
@@ -44,22 +43,6 @@ public class Student extends User implements View {
         this.year = year;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
-
     @Override
     public void viewCourse() {
         new Administrator().viewCourse();
@@ -78,11 +61,6 @@ public class Student extends User implements View {
     @Override
     public void viewClass() {
         //
-    }
-
-    @Override
-    public String toString() {
-        return "Student [major=" + major + ", year=" + year + ", user=" + user + ", courses=" + courses + "]";
     }
 
     // feedback
