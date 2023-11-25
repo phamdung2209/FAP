@@ -13,6 +13,7 @@ import com.course.Course;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.func.Grade;
+import com.func.ClassroomHandler.Classroom;
 import com.func.LectureHandler.Add;
 import com.func.LectureHandler.View;
 
@@ -563,9 +564,6 @@ public class Administrator extends User {
     public boolean addGrade(Student student, Lecturer lecturer, Course course, Grade grade) {
         if (checkStudent(student.getId()) && checkLecture(lecturer.getId()) &&
                 checkCourse(course.getId())) {
-            // gradeList.add(grade);
-            // return true;
-
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
                 File file = new File(filePath);
@@ -643,6 +641,90 @@ public class Administrator extends User {
             System.err.println("Error reading file: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public boolean checkGrade(String id) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+
+            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
+            };
+            Map<String, Object> data = objectMapper.readValue(file, typeRef);
+
+            // Extract data from the "grades" key
+            List<Map<String, String>> grades = (List<Map<String, String>>) data.get("grades");
+            for (Map<String, String> grade : grades) {
+                if (grade.get("id").equals(id)) {
+                    return true;
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean deleteGrade(String gradeId) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+
+            TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
+            };
+            HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
+
+            List<Map<String, String>> grades = (List<Map<String, String>>) data.get("grades");
+
+            grades.removeIf(grade -> gradeId.equals(grade.get("id")));
+
+            data.put("grades", grades);
+            objectMapper.writeValue(file, data);
+
+            return true;
+
+        } catch (IOException e) {
+            System.err.println("Error reading/writing file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean updateGrade(String id, Grade... grades) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
+            };
+            Map<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> gradeList = (List<Map<String, String>>) data.get("grades");
+
+            for (Grade grade : grades) {
+                for (Map<String, String> gradeMap : gradeList) {
+                    if (id.equals(gradeMap.get("id"))) {
+                        gradeMap.put("studentId", grade.getStudent().getId());
+                        gradeMap.put("lecturerId", grade.getLecturer().getId());
+                        gradeMap.put("courseId", grade.getCourse().getId());
+                        gradeMap.put("grade", Integer.toString(grade.getGradeAsm()));
+
+                        break;
+                    }
+                }
+            }
+
+            // Update the "grades" key in the data map
+            data.put("grades", gradeList);
+            objectMapper.writeValue(file, data);
+            System.out.println("Student with ID " + id + " updated successfully.");
+            return true;
+        } catch (IOException e) {
+            System.err.println("Error reading/writing file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
     }
 
     // get Student by id
@@ -752,5 +834,184 @@ public class Administrator extends User {
 
     // ==================== Classroom ====================
     // add classroom
-    // public boolean addClassroom ()
+    public boolean addClassroom(Classroom classroom) {
+        try {
+            // Read existing data from file
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
+            };
+            HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> classes = (List<Map<String, String>>) data.get("classes");
+            if (classes == null) {
+                classes = new ArrayList<>();
+            }
+
+            Map<String, String> newClass = new HashMap<>();
+            newClass.put("id", classroom.getId());
+            newClass.put("name", classroom.getName());
+            newClass.put("lecturerId", classroom.getLecturerId());
+
+            classes.add(newClass);
+            data.put("classes", classes);
+
+            // Write the updated data back to the file
+            objectMapper.writeValue(file, data);
+            System.out.println("Class added successfully.");
+            return true;
+
+        } catch (IOException e) {
+            System.err.println("Error reading/writing to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // add student to classroom
+    public boolean addStudentToClass(String classId, String idStudent) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
+            };
+            HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
+            if (classList == null) {
+                classList = new ArrayList<>();
+            }
+
+            Map<String, String> newClassList = new HashMap<>();
+            newClassList.put("classId", classId);
+            newClassList.put("studentId", idStudent);
+
+            classList.add(newClassList);
+            data.put("classList", classList);
+
+            // Write the updated data back to the file
+            objectMapper.writeValue(file, data);
+            System.out.println("Class added successfully.");
+            return true;
+
+        } catch (IOException e) {
+            System.err.println("Error reading/writing to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // check classroom
+    public boolean checkClassroom(String classroomId) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
+            };
+            HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> classes = (List<Map<String, String>>) data.get("classes");
+            for (Map<String, String> classroom : classes) {
+                if (classroom.get("id").equals(classroomId)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // check student in classroom
+    public boolean checkStudentInClass(String studentId, String classId) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
+            };
+            HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
+            for (Map<String, String> classroom : classList) {
+                if (classroom.get("classId").equals(classId) && classroom.get("studentId").equals(studentId)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // view classroom
+    public void viewClassroom() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {};
+            Map<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> classes = (List<Map<String, String>>) data.get("classes");
+            List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
+
+            System.out.format("%-10s %-15s %-15s %-20s %-20s\n",
+                    "ID", "Name", "Lecturer", "Tutor", "Student Count");
+
+            for (Map<String, String> classInfo : classes) {
+                String classId = classInfo.get("id");
+                String className = classInfo.get("name");
+                String lecturerId = classInfo.get("lecturerId");
+
+                // Find lecturer name
+                String lecturerName = findLecturerName(lecturerId, data);
+
+                // Find tutor name
+                String tutorName = findTutorName(classId, classList, data);
+
+                // Find student count
+                int studentCount = countStudentsInClass(classId, classList);
+
+                System.out.format("%-10s %-15s %-15s %-20s %-20s\n",
+                        classId, className, lecturerName, tutorName, studentCount);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // helper method to find lecturer name
+    private String findLecturerName(String lecturerId, Map<String, Object> data) {
+        List<Map<String, String>> lectures = (List<Map<String, String>>) data.get("lectures");
+        for (Map<String, String> lecturer : lectures) {
+            if (lecturerId.equals(lecturer.get("id"))) {
+                return lecturer.get("name");
+            }
+        }
+        return "N/A";
+    }
+
+    // helper method to find tutor name
+    private String findTutorName(String classId, List<Map<String, String>> classList, Map<String, Object> data) {
+        for (Map<String, String> entry : classList) {
+            if (classId.equals(entry.get("classId"))) {
+                String studentId = entry.get("studentId");
+                List<Map<String, String>> students = (List<Map<String, String>>) data.get("students");
+                for (Map<String, String> student : students) {
+                    if (studentId.equals(student.get("id"))) {
+                        return student.get("name");
+                    }
+                }
+            }
+        }
+        return "N/A";
+    }
+
+    // helper method to count students in class
+    private int countStudentsInClass(String classId, List<Map<String, String>> classList) {
+        int count = 0;
+        for (Map<String, String> entry : classList) {
+            if (classId.equals(entry.get("classId"))) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

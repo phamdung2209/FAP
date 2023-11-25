@@ -18,6 +18,16 @@ public class HandleGrade {
                 Add add = new Add();
                 add.addGrade(admin);
                 break;
+            case 2:
+                // update grade
+                Update update = new Update();
+                update.updateGrade(admin);
+                break;
+            case 3:
+                // delete grade
+                Delete delete = new Delete();
+                delete.deleteGrade(admin);
+                break;
             case 4:
                 admin.viewGrade();
                 break;

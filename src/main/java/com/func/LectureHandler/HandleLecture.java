@@ -25,7 +25,7 @@ public class HandleLecture {
                 String lectureIdUpdate = scanner.next();
                 scanner.nextLine();
 
-                if (admin.checkLecture(lectureIdUpdate) == false) {
+                if (!admin.checkLecture(lectureIdUpdate)) {
                     System.out.println("Lecture does not exist.");
                     break;
                 } else {

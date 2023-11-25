@@ -12,7 +12,7 @@ public class Delete {
     public void deleteCourse(Administrator admin) {
         System.out.print("Enter course's ID: ");
         String courseID = scanner.next();
-        if (admin.checkCourse(courseID) == false) {
+        if (!admin.checkCourse(courseID)) {
             System.out.println("Course does not exist.");
         } else {
             System.out.print("Are you sure you want to delete this course? (y/n) ");

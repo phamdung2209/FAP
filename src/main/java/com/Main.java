@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.func.BackToMain;
+import com.func.ClassroomHandler.HandleClassroom;
 import com.func.CourseHandler.HandleCourse;
 import com.func.GradeHandler.HandleGrade;
 import com.func.LectureHandler.HandleLecture;
@@ -112,12 +113,20 @@ public class Main {
                         System.out.println("------MANAGE CLASSROOM-----");
                         System.out.println("1. Add classroom");
                         System.out.println("2. Add student to classroom");
-                        System.out.println("3. Set lecturer to classroom");
                         System.out.println("4. Delete classroom");
                         System.out.println("5. Get classroom information");
                         System.out.println("0. Back");
+                        System.out.println("-------------------------");
+                        System.out.print("Choose your option: ");
 
-                        
+                        int classroomOption = -1;
+                        while (classroomOption != 0) {
+                            if (scanner.hasNextInt()) {
+                                classroomOption = scanner.nextInt();
+                                HandleClassroom handleClassroom = new HandleClassroom();
+                                handleClassroom.processClassroom(classroomOption, admin);
+                            }
+                        }
                         break;
                     case 0:
                         System.out.println("System is stopping...");

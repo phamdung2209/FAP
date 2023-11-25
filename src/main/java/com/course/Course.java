@@ -19,6 +19,13 @@ public class Course {
     public Course() {
     }
 
+    public Course(String id, String courseName, String description, long cost) {
+        this.id = id;
+        this.courseName = courseName;
+        this.description = description;
+        this.cost = cost;
+    }
+    
     public Course(String id, String courseName, String description, long cost, Student student, Lecturer lecturer) {
         this.id = id;
         this.courseName = courseName;
@@ -26,13 +33,6 @@ public class Course {
         this.cost = cost;
         this.student = student;
         this.lecturer = lecturer;
-    }
-
-    public Course(String id, String courseName, String description, long cost) {
-        this.id = id;
-        this.courseName = courseName;
-        this.description = description;
-        this.cost = cost;
     }
 
     public String getId() {

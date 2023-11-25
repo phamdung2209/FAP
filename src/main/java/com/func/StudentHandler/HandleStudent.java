@@ -25,7 +25,7 @@ public class HandleStudent {
                 String studentIdUpdate = scanner.next();
                 scanner.nextLine();
 
-                if (admin.checkStudent(studentIdUpdate) == false) {
+                if (!admin.checkStudent(studentIdUpdate)) {
                     System.out.println("Student does not exist.");
                     break;
                 } else {

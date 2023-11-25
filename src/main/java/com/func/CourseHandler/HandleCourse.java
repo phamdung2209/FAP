@@ -24,7 +24,7 @@ public class HandleCourse {
                 String courseIDUpdate = scanner.next();
                 scanner.nextLine();
 
-                if (admin.checkCourse(courseIDUpdate) == false) {
+                if (!admin.checkCourse(courseIDUpdate)) {
                     System.out.println("Course does not exist.");
                     break;
                 } else {

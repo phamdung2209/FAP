@@ -1,1 +1,135 @@
-{"courses":[{"cost":"2","name":"2","description":"2","id":"2"},{"cost":"15000000","name":"JAVA","description":"Java programming","id":"1"}],"classes":[{"id":"1","name":"1","lecturerId":"1","studentId":"BH001"},{"id":"2","name":"2","lecturerId":"1","studentId":"BH00268"},{"id":"1","name":"1","lecturerId":"1","studentId":"BH001"},{"id":"2","name":"2","lecturerId":"1","studentId":"BH00268"}],"lectures":[{"address":"","gender":"MALE","month":"1","year":"1","phone":"09890999","name":"Dinh Van Dong","id":"1","department":"IT","day":"1","email":"dvd@f.e.v"}],"students":[{"address":"Ha Noi","gender":"MALE","month":"9","major":"IT","year":"2003","phone":"0787099745","name":"Pham Van Dung","id":"BH00268","day":"22","years":"2021","email":"p@g.c"},{"address":"HCM","gender":"MALE","month":"1","major":"BA","year":"1","phone":"0999182","name":"A B C","id":"BH00023","day":"1","years":"2022","email":"d@f.e.v"},{"address":"Ha Noi","gender":"female","month":"0","major":"unknown","year":"0","phone":"0123456789","name":"C D E","id":"BH001","day":"0","years":"2023","email":"cde@f.e.v"},{"address":"2","gender":"OTHER","month":"2","major":"2","year":"2","phone":"2","name":"2","id":"BH002","day":"2","years":"2","email":"2"}],"grades":[{"studentId":"BH001","lecturerId":"1","grade":"1","id":"101","courseId":"1"}]}
+{
+    "courses": [
+        {
+            "cost": "2",
+            "name": "2",
+            "description": "2",
+            "id": "2"
+        },
+        {
+            "cost": "15000000",
+            "name": "JAVA",
+            "description": "Java programming",
+            "id": "1"
+        }
+    ],
+    "classes": [
+        {
+            "lecturerId": "1",
+            "name": "IT0502",
+            "id": "D203"
+        },
+        {
+            "lecturerId": "4",
+            "name": "4",
+            "id": "D4"
+        }
+    ],
+    "lectures": [
+        {
+            "address": "",
+            "gender": "MALE",
+            "month": "1",
+            "year": "1",
+            "phone": "09890999",
+            "name": "Dinh Van Dong",
+            "id": "1",
+            "department": "IT",
+            "day": "1",
+            "email": "dvd@f.e.v"
+        },
+        {
+            "address": "female",
+            "gender": "OTHER",
+            "month": "44",
+            "year": "44",
+            "phone": "HCM",
+            "name": "444",
+            "id": "4",
+            "department": "IT",
+            "day": "44",
+            "email": "0123456789"
+        }
+    ],
+    "students": [
+        {
+            "address": "Ha Noi",
+            "gender": "MALE",
+            "month": "9",
+            "major": "IT",
+            "year": "2003",
+            "phone": "0787099745",
+            "name": "Pham Van Dung",
+            "id": "BH00268",
+            "day": "22",
+            "years": "2021",
+            "email": "p@g.c"
+        },
+        {
+            "address": "HCM",
+            "gender": "MALE",
+            "month": "1",
+            "major": "BA",
+            "year": "1",
+            "phone": "0999182",
+            "name": "A B C",
+            "id": "BH00023",
+            "day": "1",
+            "years": "2022",
+            "email": "d@f.e.v"
+        },
+        {
+            "address": "Ha Noi",
+            "gender": "female",
+            "month": "0",
+            "major": "unknown",
+            "year": "0",
+            "phone": "0123456789",
+            "name": "C D E",
+            "id": "BH001",
+            "day": "0",
+            "years": "2023",
+            "email": "cde@f.e.v"
+        },
+        {
+            "address": "2",
+            "gender": "OTHER",
+            "month": "2",
+            "major": "2",
+            "year": "2",
+            "phone": "2",
+            "name": "2",
+            "id": "BH002",
+            "day": "2",
+            "years": "2",
+            "email": "2"
+        }
+    ],
+    "grades": [
+        {
+            "studentId": "BH001",
+            "lecturerId": "1",
+            "grade": "20",
+            "id": "101",
+            "courseId": "1"
+        }
+    ],
+    "classList": [
+        {
+            "studentId": "BH00268",
+            "classId": "D203"
+        },
+        {
+            "studentId": "BH00023",
+            "classId": "D203"
+        },
+        {
+            "studentId": "BH001",
+            "classId": "D203"
+        },
+        {
+            "studentId": "BH002",
+            "classId": "D4"
+        }
+    ]
+}

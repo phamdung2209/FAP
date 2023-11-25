@@ -6,7 +6,6 @@ import com.persons.Administrator;
 import com.persons.Student;
 
 public class Add {
-    public static final String filePath = "C:\\Users\\ACER\\Documents\\Course\\Advance Programming\\Assignment 2\\Project\\FAP\\src\\main\\java\\service\\data.json";
 
     public Scanner scanner = new Scanner(System.in);
 
