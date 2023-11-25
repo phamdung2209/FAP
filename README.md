@@ -22,11 +22,11 @@ FAP is a school management system built with Java and utilizes JSON for data sto
 
 - **Grade Management:**
   - Add, delete, and update Grade information of student.
-  - View the list of students graded by instructors
+  - View the list of students graded by instructors.
 
 - **Class Management:**
   - More classes, new homeroom teacher.
-  - Add students to class
+  - Add students to class.
 
 - **Updating:**
 
