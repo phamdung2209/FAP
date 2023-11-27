@@ -2,6 +2,12 @@
 
 ![FAP Logo](https://fap.fpi.edu.vn/logo-Btec.jpg)
 
+> [![View count](https://visitcount.itsvg.in/api?id=lucthienphong1120&color=6&icon=0&pretty=true)](https://visitcount.itsvg.in/api?id=phamdung2209)
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+<p align="center" color="#36BCF7FF"><img src="https://readme-typing-svg.herokuapp.com?lines=I'm+Dung+Pham;I'm+a+Full+Stack+Developer;I'm+a+Blogger"></p>
+
 ## Introduction
 
 FAP is a school management system built with Java and utilizes JSON for data storage. It facilitates administrators and teachers in managing student information, teacher details, course data, and lectures.
