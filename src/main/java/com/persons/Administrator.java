@@ -20,16 +20,17 @@ import com.func.LectureHandler.View;
 public class Administrator extends User {
     public static final String filePath = "C:\\Users\\ACER\\Documents\\Course\\Advance Programming\\Assignment 2\\Project\\FAP\\src\\main\\java\\service\\data.json";
 
-    private List<Student> studentList;
-    private List<Lecturer> lecturerList;
-    private List<Course> courseList;
-    private List<Grade> gradeList;
+    // ThreadSafe Singleton Pattern - Creational Pattern
+    private Administrator() {
+    }
 
-    public Administrator() {
-        // studentList = new ArrayList<>();
-        // lecturerList = new ArrayList<>();
-        // courseList = new ArrayList<>();
-        // gradeList = new ArrayList<>();
+    private static Administrator admin;
+
+    public static synchronized Administrator getAdministrator() {
+        if (admin == null) {
+            admin = new Administrator();
+        }
+        return admin;
     }
 
     // ==================== Student ====================
@@ -889,7 +890,7 @@ public class Administrator extends User {
 
             // Write the updated data back to the file
             objectMapper.writeValue(file, data);
-            System.out.println("Class added successfully.");
+            System.out.println("Student added successfully.");
             return true;
 
         } catch (IOException e) {
@@ -946,7 +947,8 @@ public class Administrator extends User {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             File file = new File(filePath);
-            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {};
+            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
+            };
             Map<String, Object> data = objectMapper.readValue(file, typeRef);
             List<Map<String, String>> classes = (List<Map<String, String>>) data.get("classes");
             List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");

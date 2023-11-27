@@ -67,7 +67,7 @@ public class Add {
         if (admin.checkLecture(lid)) {
             System.out.println("Lecture already exists!");
         } else {
-            Administrator administrator = new Administrator();
+            Administrator administrator = Administrator.getAdministrator();
             administrator.addLecturer(lecturer);
         }
     }

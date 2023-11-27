@@ -31,7 +31,7 @@ public class Add {
         if (admin.checkCourse(cid)) {
             System.out.println("Course already exists.");
         } else {
-            Administrator administrator = new Administrator();
+            Administrator administrator = Administrator.getAdministrator();
             administrator.addCourse(course);
         }
     }

@@ -43,7 +43,7 @@ public class Add {
 
             Grade gra = new Grade(student, lecturer, course, grade);
 
-            Administrator administrator = new Administrator();
+            Administrator administrator = Administrator.getAdministrator();
             administrator.addGrade(student, lecturer, course, gra);
         }
     }

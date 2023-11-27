@@ -22,7 +22,7 @@ public class Update {
         cour.setDescription(uCDescription);
         cour.setCost(uCCost);
 
-        Administrator administrator = new Administrator();
+        Administrator administrator = Administrator.getAdministrator();
         administrator.updateCourse(courseIDUpdate, cour);
     }
 }

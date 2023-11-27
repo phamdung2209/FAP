@@ -59,8 +59,8 @@ public class Update {
         stu.setAddress(uaddress);
         stu.setPhoneNumber(uphoneNumber);
         stu.setEmail(uemail);
-        
-        Administrator administrator = new Administrator();
+
+        Administrator administrator = Administrator.getAdministrator();
         administrator.updateStudent(studentIdUpdate, stu);
     }
 }

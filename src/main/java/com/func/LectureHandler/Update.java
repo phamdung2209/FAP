@@ -49,7 +49,7 @@ public class Update {
         lec.setEmail(uLemail);
         lec.setDepartment(uLdepartment);
 
-        Administrator administrator = new Administrator();
+        Administrator administrator = Administrator.getAdministrator();
         administrator.updateLecturer(lectureIdUpdate, lec);
     }
 }

@@ -1,6 +1,7 @@
 package com.persons;
 
 import com.Date.DateOfBirth;
+import com.persons.persionType.PersonType;
 
 enum genderType {
     MALE, FEMALE, OTHER
@@ -29,6 +30,27 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+
+    // Factory method - Creational Pattern
+    public static User getUser(PersonType personType) {
+        switch (personType) {
+            case ADMINISTRATOR:
+                // Singleton pattern - Creational Pattern
+                return Administrator.getAdministrator();
+            case STUDENT:
+                return new Student();
+            case LECTURER:
+                return new Lecturer();
+
+            // if have more person type, add here:
+            // case STAFF:
+            // return new Staff();
+            // case PARENT:
+            // return new Parent();
+            default:
+                throw new IllegalArgumentException("No such person type");
+        }
+    } 
 
     public String getId() {
         return id;

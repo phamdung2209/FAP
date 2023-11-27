@@ -36,16 +36,13 @@ public class HandleClassroom {
                 System.out.print("Enter student's ID: ");
                 String studentId = scanner.nextLine();
 
-                if (!admin.checkClassroom("D" + classroomId)) {
+                if (!admin.checkClassroom(classroomId)) {
                     System.out.println("Classroom does not exist.");
-                    break;
                 } else if (!admin.checkStudent(studentId)) {
                     System.out.println("Student does not exist.");
-                    break;
                 } else {
-                    if (admin.checkStudentInClass(classroomId, studentId)) {
+                    if (!admin.checkStudentInClass(classroomId, studentId)) { // fixxxxxxxxxxx
                         admin.addStudentToClass(classroomId, studentId);
-                        break;
                     }
                 }
 

@@ -39,7 +39,7 @@ public class Update {
             Course course = admin.getCourseById(cid);
             Grade gra = new Grade(student, lecturer, course, grade);
 
-            Administrator administrator = new Administrator();
+            Administrator administrator = Administrator.getAdministrator();
             administrator.updateGrade(studentIdUpdate, gra);
 
         }

@@ -45,7 +45,7 @@ public class Student extends User implements View {
 
     @Override
     public void viewCourse() {
-        new Administrator().viewCourse();
+        Administrator.getAdministrator().viewCourse();
     }
 
     @Override

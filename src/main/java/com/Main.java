@@ -12,12 +12,17 @@ import com.func.GradeHandler.HandleGrade;
 import com.func.LectureHandler.HandleLecture;
 import com.func.StudentHandler.HandleStudent;
 import com.persons.Administrator;
-import com.persons.Lecturer;
-import com.persons.Student;
+import com.persons.User;
+import com.persons.persionType.PersonType;
 
 public class Main {
     public static void main(String[] args) {
-        Administrator admin = new Administrator();
+        // singleton pattern
+        // Administrator admin = Administrator.getAdministrator();
+
+        // use factory method to create admin
+        Administrator admin = (Administrator) User.getUser(PersonType.ADMINISTRATOR);
+
         Scanner scanner = new Scanner(System.in);
 
         BackToMain backToMain = new BackToMain();

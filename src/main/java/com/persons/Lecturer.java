@@ -33,7 +33,7 @@ public class Lecturer extends User implements View {
     @Override
     public void viewCourse() {
         // view course
-        new Administrator().viewCourse();
+        Administrator.getAdministrator().viewCourse();
     }
 
     @Override

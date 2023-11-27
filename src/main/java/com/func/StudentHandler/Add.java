@@ -64,7 +64,7 @@ public class Add {
             System.out.println("Student already exists.");
             // break;
         } else {
-            Administrator administrator = new Administrator();
+            Administrator administrator = Administrator.getAdministrator();
             administrator.addStudent(student);
         }
 
