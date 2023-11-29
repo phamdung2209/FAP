@@ -1,16 +1,27 @@
 package com.persons;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import com.date.DateOfBirth;
+import com.persons.personType.PersonType;
 
-import com.Date.DateOfBirth;
-import com.func.View;
-
-public class Student extends User implements View {
+public class Student extends User {
+    private static final Student getStudent = new Student();
     private String major;
     private int year;
+
+    private Student() {
+    }
+
+    public static Student getStudent() {
+        return getStudent;
+    }
+
+    // person type
+    public PersonType getPersonType() {
+        return PersonType.STUDENT;
+    }
 
     public Student(String id, String fullName, DateOfBirth dateOfBirth, genderType gender, String address,
             String phoneNumber, String email, String major, int year) {
@@ -22,9 +33,6 @@ public class Student extends User implements View {
     public Student(String major, int year) {
         this.major = major;
         this.year = year;
-    }
-
-    public Student() {
     }
 
     public String getMajor() {
@@ -50,24 +58,24 @@ public class Student extends User implements View {
 
     @Override
     public void viewGrade() {
-
+        Administrator.getAdministrator().viewGrade();
     }
 
     @Override
     public void viewTimetable() {
-        //
+        Administrator.getAdministrator().viewTimetable();
     }
 
     @Override
     public void viewClass() {
-        //
+        Administrator.getAdministrator().viewClassroom();
     }
 
     // feedback
     public void feedback(Lecturer lecturer) {
         // array list save feedback
         List<String> feedbacks = new ArrayList<String>();
-        if(lecturer != null){
+        if (lecturer != null) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Feedback for lecturer: " + lecturer.getFullName());
             System.out.println("Enter feedback: ");

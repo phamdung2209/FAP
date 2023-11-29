@@ -2,7 +2,7 @@ package com.func.LectureHandler;
 
 import java.util.Scanner;
 
-import com.Date.DateOfBirth;
+import com.date.DateOfBirth;
 import com.persons.Administrator;
 import com.persons.Lecturer;
 
@@ -23,13 +23,13 @@ public class Update {
         uLdateOfBirth.setDay(uLday);
         uLdateOfBirth.setMonth(uLmonth);
         uLdateOfBirth.setYear(uLyear);
+        scanner.nextLine();
 
         System.out.print("Gender: ");
-        String uLgender = scanner.next();
+        String uLgender = scanner.nextLine();
 
         System.out.print("Address: ");
         String uLaddress = scanner.nextLine();
-        scanner.nextLine();
 
         System.out.print("Phone number: ");
         String uLphoneNumber = scanner.nextLine();
@@ -40,7 +40,7 @@ public class Update {
         System.out.print("Department: ");
         String uLdepartment = scanner.nextLine();
 
-        Lecturer lec = new Lecturer();
+        Lecturer lec = Lecturer.getLecturer();
         lec.setFullName(uLname);
         lec.setDateOfBirth(uLdateOfBirth);
         lec.setGender(uLgender);

@@ -13,7 +13,7 @@ import com.func.LectureHandler.HandleLecture;
 import com.func.StudentHandler.HandleStudent;
 import com.persons.Administrator;
 import com.persons.User;
-import com.persons.persionType.PersonType;
+import com.persons.personType.PersonType;
 
 public class Main {
     public static void main(String[] args) {
@@ -118,8 +118,9 @@ public class Main {
                         System.out.println("------MANAGE CLASSROOM-----");
                         System.out.println("1. Add classroom");
                         System.out.println("2. Add student to classroom");
-                        System.out.println("4. Delete classroom");
-                        System.out.println("5. Get classroom information");
+                        System.out.println("3. Delete classroom");
+                        System.out.println("4. Get classroom information");
+                        System.out.println("5. Get student list in classroom");
                         System.out.println("0. Back");
                         System.out.println("-------------------------");
                         System.out.print("Choose your option: ");

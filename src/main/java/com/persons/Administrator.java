@@ -8,14 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.Date.DateOfBirth;
 import com.course.Course;
+import com.date.DateOfBirth;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.func.Grade;
 import com.func.ClassroomHandler.Classroom;
 import com.func.LectureHandler.Add;
 import com.func.LectureHandler.View;
+import com.persons.personType.PersonType;
 
 public class Administrator extends User {
     public static final String filePath = "C:\\Users\\ACER\\Documents\\Course\\Advance Programming\\Assignment 2\\Project\\FAP\\src\\main\\java\\service\\data.json";
@@ -31,6 +32,11 @@ public class Administrator extends User {
             admin = new Administrator();
         }
         return admin;
+    }
+
+    // person type
+    public PersonType getPersonType() {
+        return PersonType.ADMINISTRATOR;
     }
 
     // ==================== Student ====================
@@ -117,25 +123,28 @@ public class Administrator extends User {
     // delete student
     public boolean deleteStudent(String studentId) {
         try {
-            // Read JSON file into a Map
             ObjectMapper objectMapper = new ObjectMapper();
             File file = new File(filePath);
-
-            // Deserialize JSON file into a Map
             TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
             };
             Map<String, Object> data = objectMapper.readValue(file, typeRef);
-
-            // Extract data from the "students" key
             List<Map<String, String>> students = (List<Map<String, String>>) data.get("students");
 
-            // Find and delete the student with the specified ID
+            //
+            List<Map<String, String>> grades = (List<Map<String, String>>) data.get("grades");
+
+            grades.removeIf(grade -> studentId.equals(grade.get("studentId")));
+
+            data.put("grades", grades);
+
+            List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
+            classList.removeIf(std -> studentId.equals(std.get("studentId")));
+
+            data.put("classList", classList);
+            //
+
             students.removeIf(student -> studentId.equals(student.get("id")));
-
-            // Update the "students" key in the data map
             data.put("students", students);
-
-            // Write the updated data back to the file
             objectMapper.writeValue(file, data);
 
             return true;
@@ -309,7 +318,6 @@ public class Administrator extends User {
                         lectureMap.put("phone", lecture.getPhoneNumber());
                         lectureMap.put("email", lecture.getEmail());
                         lectureMap.put("department", lecture.getDepartment());
-
                         break;
                     }
                 }
@@ -339,6 +347,14 @@ public class Administrator extends User {
             Map<String, Object> data = objectMapper.readValue(file, typeRef);
 
             List<Map<String, String>> lectures = (List<Map<String, String>>) data.get("lectures");
+
+            //
+            List<Map<String, String>> grades = (List<Map<String, String>>) data.get("grades");
+
+            grades.removeIf(grade -> lectureId.equals(grade.get("lecturerId")));
+
+            data.put("grades", grades);
+            //
 
             lectures.removeIf(lecture -> lectureId.equals(lecture.get("id")));
 
@@ -417,25 +433,6 @@ public class Administrator extends User {
 
     // view course
     public void viewCourse() {
-        // System.out.format("%-10s %-15s %-15s %-10s\n",
-        // "ID", "Course Name", "Description", "Cost"/*
-        // * , "Student", "Lecturer", "Start Date", "End Date", "Status"
-        // */);
-        // courseList.forEach(course -> {
-        // System.out.format("%-10s %-15s %-15s %-10s\n",
-        // course.getId(), course.getCourseName(), course.getDescription(),
-        // course.getCost()
-        // /*
-        // * ,course.getStudent().getFullName(), course.getLecturer().getFullName(),
-        // * course.getStartDate().getDay() + "/" + course.getStartDate().getMonth() +
-        // "/"
-        // * + course.getStartDate().getYear(),
-        // * course.getEndDate().getDay() + "/" + course.getEndDate().getMonth() + "/"
-        // * + course.getEndDate().getYear(),
-        // * course.getStatus()
-        // */ + "\n");
-        // });
-
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             File file = new File(filePath);
@@ -447,13 +444,13 @@ public class Administrator extends User {
             List<Map<String, String>> courses = (List<Map<String, String>>) data.get("courses");
 
             // Print the lecture data
-            System.out.format("%-10s %-15s %-15s %-10s\n",
+            System.out.format("%-10s %-25s %-25s %-10s\n",
                     "ID", "Course Name", "Description", "Cost"/*
                                                                * , "Student", "Lecturer", "Start Date", "End Date",
                                                                * "Status"
                                                                */);
             for (Map<String, String> course : courses) {
-                System.out.format("%-10s %-15s %-15s %-10s\n",
+                System.out.format("%-10s %-25s %-25s %-10s\n",
                         course.get("id"), course.get("name"), course.get("description"), course.get("cost")
                                 /*
                                  * ,course.getStudent().getFullName(), course.getLecturer().getFullName(),
@@ -519,9 +516,12 @@ public class Administrator extends User {
             Map<String, Object> data = objectMapper.readValue(file, typeRef);
 
             List<Map<String, String>> courses = (List<Map<String, String>>) data.get("courses");
+            List<Map<String, String>> grades = (List<Map<String, String>>) data.get("grades");
 
+            grades.removeIf(grade -> id.equals(grade.get("courseId")));
             courses.removeIf(course -> id.equals(course.get("id")));
 
+            data.put("grades", grades);
             data.put("courses", courses);
             objectMapper.writeValue(file, data);
 
@@ -602,15 +602,6 @@ public class Administrator extends User {
 
     // view grade
     public void viewGrade() {
-        // System.out.format("%-10s %-15s %-15s %-20s %-10s\n",
-        // "id", "Student", "Lecturer", "Course", "Grade");
-        // gradeList.forEach(grade -> {
-        // System.out.format("%-10s %-15s %-15s %-20s %-10s\n",
-        // grade.getId(), grade.getStudent().getFullName(),
-        // grade.getLecturer().getFullName(),
-        // grade.getCourse().getCourseName(), grade.getGradeAsm() + "\n");
-        // });
-
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             File file = new File(filePath);
@@ -742,7 +733,7 @@ public class Administrator extends User {
 
             for (Map<String, String> studentData : students) {
                 if (id.equals(studentData.get("id"))) {
-                    Student student = new Student();
+                    Student student = Student.getStudent();
                     student.setId(id);
                     student.setFullName(studentData.get("name"));
                     student.setGender(studentData.get("gender"));
@@ -780,7 +771,7 @@ public class Administrator extends User {
 
             for (Map<String, String> lectureData : lectures) {
                 if (id.equals(lectureData.get("id"))) {
-                    Lecturer lecture = new Lecturer();
+                    Lecturer lecture = Lecturer.getLecturer();
                     lecture.setId(id);
                     lecture.setFullName(lectureData.get("name"));
                     lecture.setGender(lectureData.get("gender"));
@@ -931,7 +922,7 @@ public class Administrator extends User {
             HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
             List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
             for (Map<String, String> classroom : classList) {
-                if (classroom.get("classId").equals(classId) && classroom.get("studentId").equals(studentId)) {
+                if (classroom.containsValue(studentId) && classroom.containsValue(classId)) {
                     return true;
                 }
             }
@@ -954,9 +945,9 @@ public class Administrator extends User {
             List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
 
             System.out.format("%-10s %-15s %-15s %-20s %-20s\n",
-                    "ID", "Name", "Lecturer", "Tutor", "Student Count");
+                    "ID", "Name", "Lecturer", "Monitor", "Student Count");
 
-            for (Map<String, String> classInfo : classes) {
+            classes.forEach(classInfo -> {
                 String classId = classInfo.get("id");
                 String className = classInfo.get("name");
                 String lecturerId = classInfo.get("lecturerId");
@@ -972,7 +963,25 @@ public class Administrator extends User {
 
                 System.out.format("%-10s %-15s %-15s %-20s %-20s\n",
                         classId, className, lecturerName, tutorName, studentCount);
-            }
+            });
+
+            // for (Map<String, String> classInfo : classes) {
+            // String classId = classInfo.get("id");
+            // String className = classInfo.get("name");
+            // String lecturerId = classInfo.get("lecturerId");
+
+            // // Find lecturer name
+            // String lecturerName = findLecturerName(lecturerId, data);
+
+            // // Find tutor name
+            // String tutorName = findTutorName(classId, classList, data);
+
+            // // Find student count
+            // int studentCount = countStudentsInClass(classId, classList);
+
+            // System.out.format("%-10s %-15s %-15s %-20s %-20s\n",
+            // classId, className, lecturerName, tutorName, studentCount);
+            // }
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
             e.printStackTrace();
@@ -982,6 +991,11 @@ public class Administrator extends User {
     // helper method to find lecturer name
     private String findLecturerName(String lecturerId, Map<String, Object> data) {
         List<Map<String, String>> lectures = (List<Map<String, String>>) data.get("lectures");
+        // lectures.forEach(lecturer -> {
+        // if (lecturerId.equals(lecturer.get("id"))) {
+        // return lecturer.get("name");
+        // }
+        // });
         for (Map<String, String> lecturer : lectures) {
             if (lecturerId.equals(lecturer.get("id"))) {
                 return lecturer.get("name");
@@ -1016,4 +1030,128 @@ public class Administrator extends User {
         }
         return count;
     }
+
+    // Delete classroom
+    public boolean deleteClass(String id) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+
+            TypeReference<HashMap<String, Object>> typeRef = new TypeReference<HashMap<String, Object>>() {
+            };
+            HashMap<String, Object> data = objectMapper.readValue(file, typeRef);
+
+            List<Map<String, String>> classes = (List<Map<String, String>>) data.get("classes");
+            List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
+
+            classList.removeIf(clr -> id.equals(clr.get("classId")));
+            classes.removeIf(clr -> id.equals(clr.get("id")));
+
+            data.put("classList", classList);
+            data.put("classes", classes);
+            objectMapper.writeValue(file, data);
+
+            System.out.println("Class with ID " + id + " deleted successfully.");
+            return true;
+
+        } catch (IOException e) {
+            System.err.println("Error reading/writing file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // view class list of student
+    public void getClassroom(String classId) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
+            };
+            Map<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
+
+            final int[] no = { 1 };
+            final String[] className = { "" };
+            List<Map<String, String>> classes = (List<Map<String, String>>) data.get("classes");
+
+            classes.forEach(clr -> {
+                if (classId.equals(clr.get("id"))) {
+                    className[0] = clr.get("name");
+                }
+            });
+            System.out.println("List of students in class " + className[0] + ":");
+            System.out.format("%-10s %-15s %-25s\n",
+                    "No", "ID", "Student");
+
+            classList.forEach(student -> {
+                String studentId = student.get("studentId");
+                String studentName = findStudentName(studentId, data);
+
+                if (classId.equals(student.get("classId"))) {
+                    System.out.format("%-10s %-15s %-25s\n",
+                            no[0]++, studentId, studentName);
+                }
+            });
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // helper method to find student name
+    private String findStudentName(String studentId, Map<String, Object> data) {
+        List<Map<String, String>> students = (List<Map<String, String>>) data.get("students");
+        for (Map<String, String> student : students) {
+            if (studentId.equals(student.get("id"))) {
+                return student.get("name");
+            }
+        }
+        return "N/A";
+    }
+
+    // ==================== viewTimetable ====================
+    public void viewTimetable() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(filePath);
+            TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
+            };
+            Map<String, Object> data = objectMapper.readValue(file, typeRef);
+            List<Map<String, String>> classes = (List<Map<String, String>>) data.get("classes");
+            List<Map<String, String>> classList = (List<Map<String, String>>) data.get("classList");
+
+            System.out.format("%-10s %-15s %-15s %-20s %-20s\n",
+                    "ID", "Name", "Lecturer", "Monitor", "Student Count");
+
+            classes.forEach(classInfo -> {
+                String classId = classInfo.get("id");
+                String className = classInfo.get("name");
+                String lecturerId = classInfo.get("lecturerId");
+
+                // Find lecturer name
+                String lecturerName = findLecturerName(lecturerId, data);
+
+                // Find tutor name
+                String tutorName = findTutorName(classId, classList, data);
+
+                // Find student count
+                int studentCount = countStudentsInClass(classId, classList);
+
+                System.out.format("%-10s %-15s %-15s %-20s %-20s\n",
+                        classId, className, lecturerName, tutorName, studentCount);
+            });
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void viewClass() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'viewClass'");
+    }
 }
+
+// ==================== End ====================

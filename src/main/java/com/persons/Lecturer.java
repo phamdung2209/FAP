@@ -5,15 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.Date.DateOfBirth;
 import com.course.Course;
+import com.date.DateOfBirth;
 import com.func.Grade;
 import com.func.View;
+import com.persons.personType.PersonType;
 
-public class Lecturer extends User implements View {
+public class Lecturer extends User {
+    private static final Lecturer getLecturer = new Lecturer();
     private String department;
 
-    public Lecturer() {
+    private Lecturer() {
+    }
+
+    public static Lecturer getLecturer() {
+        return getLecturer;
+    }
+
+    // person type
+    public PersonType getPersonType() {
+        return PersonType.LECTURER;
     }
 
     public Lecturer(String id, String fullName, DateOfBirth dateOfBirth, genderType gender, String address,
@@ -32,35 +43,22 @@ public class Lecturer extends User implements View {
 
     @Override
     public void viewCourse() {
-        // view course
         Administrator.getAdministrator().viewCourse();
     }
 
     @Override
     public void viewGrade() {
-        // view grade
-        // List<Grade> grades = new ArrayList<>();
-        // grades.forEach((grade) -> {
-        // System.out.format("%-10s %-15s %-15s %-10s %-10s %-15s %-20s %-15s %-5s\n",
-        // grade.getStudent().getId(), grade.getStudent().getFullName(),
-        // grade.getStudent().getDateOfBirth().getDay() + "/" +
-        // grade.getStudent().getDateOfBirth().getMonth() + "/"
-        // + grade.getStudent().getDateOfBirth().getYear(),
-        // grade.getStudent().getGender(), grade.getStudent().getAddress(),
-        // grade.getStudent().getPhoneNumber(), grade.getStudent().getEmail(),
-        // grade.getStudent().getMajor(), grade.getStudent().getYear() + "\n");
-        // });
-
+        Administrator.getAdministrator().viewGrade();
     }
 
     @Override
     public void viewTimetable() {
-        //
+        Administrator.getAdministrator().viewTimetable();
     }
 
     @Override
     public void viewClass() {
-        //
+        Administrator.getAdministrator().viewClassroom();
     }
 
     public int gradeStudent(Student student, Lecturer lecturer, Course course, int gradeAsm) {

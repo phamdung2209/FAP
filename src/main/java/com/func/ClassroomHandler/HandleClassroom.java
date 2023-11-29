@@ -1,7 +1,10 @@
 package com.func.ClassroomHandler;
 
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import com.func.BackToMain;
 import com.persons.Administrator;
 
 public class HandleClassroom {
@@ -41,18 +44,66 @@ public class HandleClassroom {
                 } else if (!admin.checkStudent(studentId)) {
                     System.out.println("Student does not exist.");
                 } else {
-                    if (!admin.checkStudentInClass(classroomId, studentId)) { // fixxxxxxxxxxx
+                    if (!admin.checkStudentInClass(classroomId, studentId)) {
                         admin.addStudentToClass(classroomId, studentId);
+                    } else {
+                        System.out.println("Student already in class.");
                     }
                 }
 
                 break;
-            case 5:
+            case 3:
+                System.out.println("Remove students from the classroom:");
+                System.out.print("Enter classroom's ID: ");
+                String classroomIdRemove = scanner.nextLine();
+
+                if (admin.checkClassroom(classroomIdRemove)) {
+                    System.out.print("Are you sure you want to delete this course? (y/n) ");
+                    String confirm = scanner.next();
+
+                    switch (confirm) {
+                        case "y":
+                        case "yes":
+                        case "Y":
+                            System.out.println("Deleting classroom...");
+                            new Timer().schedule(new TimerTask() {
+                                public void run() {
+                                    admin.deleteClass(classroomIdRemove);
+                                }
+                            }, 3000);
+                            break;
+                        case "n":
+                        case "no":
+                        case "N":
+                        case "":
+                            System.out.println("Canceled!");
+                            break;
+                        default:
+                            break;
+                    }
+
+                } else {
+                    System.out.println("Classroom does not exist.");
+                }
+                break;
+            case 4:
                 // view classroom
                 admin.viewClassroom();
                 break;
+            case 5:
+                // get classroom information
+                System.out.print("Enter classroom's ID: ");
+                String classroomIdGet = scanner.nextLine();
+
+                if (admin.checkClassroom(classroomIdGet)) {
+                    admin.getClassroom(classroomIdGet);
+                } else {
+                    System.out.println("Classroom does not exist.");
+                }
+                break;
             case 0:
-                System.out.println("Back to main menu");
+                BackToMain backToMain = new BackToMain();
+                backToMain.backToMain();
                 break;
             default:
                 System.out.println("Invalid input. Please enter a number.");

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.Date.DateOfBirth;
+import com.date.DateOfBirth;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.persons.Administrator;
@@ -54,7 +54,7 @@ public class Add {
         System.out.print("Department: ");
         String ldepartment = scanner.nextLine();
 
-        Lecturer lecturer = new Lecturer();
+        Lecturer lecturer = Lecturer.getLecturer();
         lecturer.setId(lid);
         lecturer.setFullName(lname);
         lecturer.setDateOfBirth(ldateOfBirth);

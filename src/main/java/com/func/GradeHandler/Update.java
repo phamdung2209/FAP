@@ -2,8 +2,8 @@ package com.func.GradeHandler;
 
 import java.util.Scanner;
 
-import com.Date.DateOfBirth;
 import com.course.Course;
+import com.date.DateOfBirth;
 import com.func.Grade;
 import com.persons.Administrator;
 import com.persons.Lecturer;

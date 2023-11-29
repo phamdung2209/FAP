@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.Date.DateOfBirth;
+import com.date.DateOfBirth;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.persons.Administrator;
@@ -37,10 +37,10 @@ public class Update {
         System.out.print("Year of admission: ");
         int uyear = scanner.nextInt();
         scanner.nextLine();
-
+        
         System.out.print("Major: ");
         String umajor = scanner.nextLine();
-
+        
         System.out.print("Address: ");
         String uaddress = scanner.nextLine();
 
@@ -50,7 +50,8 @@ public class Update {
         System.out.print("Email: ");
         String uemail = scanner.nextLine();
 
-        Student stu = new Student();
+        
+        Student stu = Student.getStudent();
         stu.setFullName(ufullName);
         stu.setGender(ugenderString);
         stu.setDateOfBirth(udateOfBirth);

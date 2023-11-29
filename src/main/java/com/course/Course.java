@@ -3,7 +3,7 @@ package com.course;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Date.Schedule;
+import com.date.Schedule;
 import com.persons.Lecturer;
 import com.persons.Student;
 

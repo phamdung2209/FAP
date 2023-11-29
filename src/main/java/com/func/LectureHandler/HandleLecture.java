@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.Date.DateOfBirth;
+import com.date.DateOfBirth;
 import com.func.BackToMain;
 import com.persons.Administrator;
 import com.persons.Lecturer;

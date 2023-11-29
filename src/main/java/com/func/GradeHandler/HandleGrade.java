@@ -7,6 +7,8 @@ import com.func.Grade;
 import com.persons.Administrator;
 import com.persons.Lecturer;
 import com.persons.Student;
+import com.persons.User;
+import com.persons.personType.PersonType;
 
 public class HandleGrade {
     public Scanner scanner = new Scanner(System.in);
@@ -29,7 +31,13 @@ public class HandleGrade {
                 delete.deleteGrade(admin);
                 break;
             case 4:
-                admin.viewGrade();
+                com.func.View viewStudent = User.getUser(Student.getStudent().getPersonType());
+                com.func.View viewLecturer = User.getUser(Lecturer.getLecturer().getPersonType());
+                com.func.View viewAdmin = User.getUser(Administrator.getAdministrator().getPersonType());
+
+                // viewStudent.viewGrade(); // View grade of student
+                // viewLecturer.viewGrade(); // View grade of lecturer
+                viewAdmin.viewGrade(); // View grade of admin
                 break;
             case 0:
                 System.out.println("Back to main menu...");

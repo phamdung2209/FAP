@@ -1,7 +1,8 @@
 package com.func.StudentHandler;
 
 import java.util.Scanner;
-import com.Date.DateOfBirth;
+
+import com.date.DateOfBirth;
 import com.persons.Administrator;
 import com.persons.Student;
 
@@ -49,7 +50,7 @@ public class Add {
         System.out.print("Email: ");
         String email = scanner.nextLine();
 
-        Student student = new Student();
+        Student student = Student.getStudent();
         student.setId("BH00" + id);
         student.setFullName(fullName);
         student.setGender(genderString);

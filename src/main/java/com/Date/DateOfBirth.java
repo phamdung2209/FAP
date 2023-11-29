@@ -1,4 +1,4 @@
-package com.Date;
+package com.date;
 
 public class DateOfBirth {
     private int day;

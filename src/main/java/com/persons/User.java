@@ -1,13 +1,14 @@
 package com.persons;
 
-import com.Date.DateOfBirth;
-import com.persons.persionType.PersonType;
+import com.date.DateOfBirth;
+import com.func.View;
+import com.persons.personType.PersonType;
 
 enum genderType {
     MALE, FEMALE, OTHER
 }
 
-public abstract class User {
+public abstract class User implements View{
     private String id;
     private String fullName;
     private DateOfBirth dateOfBirth;
@@ -32,15 +33,15 @@ public abstract class User {
     }
 
     // Factory method - Creational Pattern
-    public static User getUser(PersonType personType) {
+    public static View getUser(PersonType personType) {
         switch (personType) {
             case ADMINISTRATOR:
                 // Singleton pattern - Creational Pattern
                 return Administrator.getAdministrator();
             case STUDENT:
-                return new Student();
+                return Student.getStudent();
             case LECTURER:
-                return new Lecturer();
+                return Lecturer.getLecturer();
 
             // if have more person type, add here:
             // case STAFF:
@@ -50,7 +51,7 @@ public abstract class User {
             default:
                 throw new IllegalArgumentException("No such person type");
         }
-    } 
+    }
 
     public String getId() {
         return id;
