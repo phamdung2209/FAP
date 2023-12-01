@@ -2,9 +2,9 @@ package com.persons;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,11 +14,37 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.func.Grade;
 import com.func.ClassroomHandler.Classroom;
-import com.func.LectureHandler.Add;
-import com.func.LectureHandler.View;
 import com.persons.personType.PersonType;
 
-public class Administrator extends User {
+// Component interface
+interface getNotify {
+    void display();
+}
+
+class AdministratorGroup implements getNotify {
+    private List<getNotify> administrators = new ArrayList<>();
+
+    public AdministratorGroup() {
+    }
+
+    public void addAdministrator(getNotify administrator) {
+        administrators.add(administrator);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Administrator Group");
+        administrators.forEach(getNotify::display);
+    }
+}
+
+public class Administrator extends User implements getNotify {
+    // Composite pattern - Structural Pattern
+    @Override
+    public void display() {
+        System.out.println("Administrator" + getFullName() + "has been added");
+    }
+
     public static final String filePath = "C:\\Users\\ACER\\Documents\\Course\\Advance Programming\\Assignment 2\\Project\\FAP\\src\\main\\java\\service\\data.json";
 
     // ThreadSafe Singleton Pattern - Creational Pattern
@@ -32,6 +58,24 @@ public class Administrator extends User {
             admin = new Administrator();
         }
         return admin;
+    }
+
+    // iterator pattern - Behavioral Pattern
+    public void viewStudents(){
+        Student student1 = new Student("Dung Pham");
+        Student student2 = new Student("John Wick");
+        Student student3 = new Student("Tony Stark");
+
+        List<Student> students = new ArrayList<>();
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
+
+        Iterator student = students.iterator();
+        while(student.hasNext()){
+            Student std = (Student) student.next();
+            System.out.println(std.getFullName());
+        }
     }
 
     // person type

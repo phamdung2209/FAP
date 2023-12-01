@@ -1,15 +1,33 @@
 package com.func;
 
+import java.util.Observable;
+
 import com.course.Course;
 import com.persons.Lecturer;
 import com.persons.Student;
 
-public class Grade {
+public class Grade extends Observable {
+
+    // observer pattern
+    private String currentGrade;
+
+    public void updateGrade(String newGrade) {
+        this.currentGrade = newGrade;
+        setChanged();
+        notifyObservers(newGrade);
+    }
+
+    public String getCurrentGrade() {
+        return currentGrade;
+    }
+
+    // end observer pattern
+
     private int id = 100;
-    Student student;
-    Lecturer lecturer;
-    Course course;
-    int gradeAsm;
+    private Student student;
+    private Lecturer lecturer;
+    private Course course;
+    private int gradeAsm;
 
     public Grade() {
     }

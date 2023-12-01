@@ -2,11 +2,36 @@ package com.persons;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 import com.date.DateOfBirth;
+import com.func.Grade;
 import com.persons.personType.PersonType;
 
-public class Student extends User {
+public class Student extends User implements GradeObserver, Observer{
+
+    // observer pattern
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof Grade) {
+            System.out.println(name + " received grade update: " + arg);
+        }
+    }
+
+    @Override
+    public void updateGrade(String newGrade) {
+        Administrator.getAdministrator().updateGrade(newGrade);
+    }
+    
+    // end observer pattern
+
     private static final Student getStudent = new Student();
     private String major;
     private int year;
@@ -87,4 +112,5 @@ public class Student extends User {
             System.out.println("Lecturer not found!");
         }
     }
+
 }

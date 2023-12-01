@@ -1,6 +1,5 @@
 package com.persons;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +7,6 @@ import java.util.Scanner;
 import com.course.Course;
 import com.date.DateOfBirth;
 import com.func.Grade;
-import com.func.View;
 import com.persons.personType.PersonType;
 
 public class Lecturer extends User {

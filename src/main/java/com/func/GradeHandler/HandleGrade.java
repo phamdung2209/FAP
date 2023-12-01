@@ -8,7 +8,6 @@ import com.persons.Administrator;
 import com.persons.Lecturer;
 import com.persons.Student;
 import com.persons.User;
-import com.persons.personType.PersonType;
 
 public class HandleGrade {
     public Scanner scanner = new Scanner(System.in);

@@ -8,7 +8,7 @@ enum genderType {
     MALE, FEMALE, OTHER
 }
 
-public abstract class User implements View{
+public abstract class User implements View {
     private String id;
     private String fullName;
     private DateOfBirth dateOfBirth;
@@ -30,6 +30,55 @@ public abstract class User implements View{
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    // Builder pattern - Creational Pattern
+    public User(UserBuilder builder) {
+        this.id = builder.id;
+        this.fullName = builder.fullName;
+    }
+
+    public static class UserBuilder {
+        private String id;
+        private String fullName;
+
+        public UserBuilder setId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public UserBuilder setFullName(String fullName) {
+            this.fullName = fullName;
+            return this;
+        }
+
+        public User build() {
+            return new User(this) {
+                @Override
+                public void viewCourse() {
+                    // TODO Auto-generated method stub
+                    throw new UnsupportedOperationException("Unimplemented method 'viewCourse'");
+                }
+
+                @Override
+                public void viewGrade() {
+                    // TODO Auto-generated method stub
+                    throw new UnsupportedOperationException("Unimplemented method 'viewGrade'");
+                }
+
+                @Override
+                public void viewTimetable() {
+                    // TODO Auto-generated method stub
+                    throw new UnsupportedOperationException("Unimplemented method 'viewTimetable'");
+                }
+
+                @Override
+                public void viewClass() {
+                    // TODO Auto-generated method stub
+                    throw new UnsupportedOperationException("Unimplemented method 'viewClass'");
+                }
+            };
+        }
     }
 
     // Factory method - Creational Pattern
